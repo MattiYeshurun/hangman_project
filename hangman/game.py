@@ -1,11 +1,10 @@
-from words import choose_secret_word
 from data.words import is_alpha
 
 def init_state(secret: str, max_tries: int) -> dict:
     state = {
         "secret": secret,
         "display": ["_"] * len(secret),
-        "guessed": set[str],
+        "guessed": set(),
         "wrong_guesses": 0,
         "max_tries": max_tries
     }
