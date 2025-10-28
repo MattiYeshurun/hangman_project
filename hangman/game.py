@@ -13,9 +13,9 @@ def init_state(secret: str, max_tries: int) -> dict:
 
 def validate_guess(ch: str, guessed: set[str]) -> tuple[bool, str]:
     if len(ch) != 1 or not ch in is_alpha:
-        return False, "A single character must be entered."
-    if ch in guessed:
-        return False, f"The character {ch} is already selected, choose another character."
+        return False, "יש להכניס תו בודד!"
+    elif ch in guessed:
+        return False, f"האות שהכנסת  {ch} נבחרה כבר, בחר אות אחרת "
     return True, ""
 
 
@@ -28,8 +28,7 @@ def apply_guess(state: dict, ch: str) -> bool:
         if secret_char == ch:
             state["display"][i] = ch
             return True
-        else:
-            state["wrong_guesses"] += 1
+    state["wrong_guesses"] += 1
     return False
 
 
@@ -45,7 +44,7 @@ def render_display(state: dict) -> str:
 
 def render_summary(state: dict) -> str:
     return (
-        f"the secret word is: {state["secret"]}\n"
-        f"The letters you guessed are: {','.join(state["guessed"])}" )
+        f"המילה הסודית היא: {state["secret"]}\n"
+        f"האותיות שניחשת הן: {','.join(state["guessed"])}" )
 
 
